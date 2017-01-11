@@ -1,4 +1,7 @@
 import sys, shlex, os
+from Serash.constants import *
+
+built_in_cmds = {}
 
 SHELL_STATUS_RUN = 1
 SHELL_STATUS_STOP = 0
@@ -9,6 +12,12 @@ def tokenize(string):
     return shlex.split(string)
 
 def execute(cmd_tokens):
+    cmd_name = cmd_tokens[0]
+    cmd_args = cmd_tokens[1:]
+
+    if cmd_name in built_in_cmds:
+        return built_in_cmds[cmd_name](cmd_args)
+
     pid = os.fork()
 
     if pid == 0:
@@ -35,7 +44,14 @@ def shell_loop():
 
         status = execute(cmd_tokens)
 
+def register_command(name, func):
+    built_in_cmds[name] = func
+        
+def init():
+    register_command("cd", cd)
+        
 def main():
+    init()
     shell_loop()
 
 if __name__ == "__main__":
