@@ -1,3 +1,8 @@
-IFT2245 Hiver 2017 TP 1
-
 Python Shell
+=================
+
+To run Shell use command:
+
+python -m serash.shell
+
+from root directory (alongside the serash folder)
