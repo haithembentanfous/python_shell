@@ -4,8 +4,8 @@ from serash.builtins import *
 
 built_in_cmds = {}
 
-SHELL_STATUS_RUN = 1
-SHELL_STATUS_STOP = 0
+stat_r = 1
+stat_s = 0
 
 #Splitting the user's command
 #(mkdir "my folder") will return a list ['mkdir', '"my folder"]
@@ -33,9 +33,9 @@ def execute(cmd_tokens):
     return SHELL_STATUS_RUN
 
 def shell_loop():
-    status = SHELL_STATUS_RUN
+    status = stat_r
 
-    while status == SHELL_STATUS_RUN:
+    while status == stat_r:
         sys.stdout.write('seraf@ > ')
         sys.stdout.flush()
 

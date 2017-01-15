@@ -1,2 +1,2 @@
-SHELL_STATUS_STOP = 0
-SHELL_STATUS_RUN = 1
+stat_s = 0
+stat_r = 1
