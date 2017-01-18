@@ -30,7 +30,7 @@ def execute(cmd_tokens):
             if os.WIFEXITED(status) or os.WIFSIGNALED(status):
                 break
             
-    return SHELL_STATUS_RUN
+    return stat_r
 
 def shell_loop():
     status = stat_r
