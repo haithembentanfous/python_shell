@@ -18,11 +18,15 @@ def execute(cmd_tokens):
 
     if cmd_name in built_in_cmds:
         return built_in_cmds[cmd_name](cmd_args)
-
+    
     pid = os.fork()
 
     if pid == 0:
-        os.execvp(cmd_tokens[0], cmd_tokens)
+        try :
+            status = os.execvp(cmd_tokens[0], cmd_tokens)
+        except OSError as FileNotFoundError :
+            print ("commande not fount !")
+            return stat_r
     elif pid > 0:
         while True:
             wpid, status = os.waitpid(pid, 0)
